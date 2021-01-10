@@ -1,21 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import LoginView from './src/LoginView';
+import HomeView from './src/HomeView';
+import ArtistPage from './src/ArtistPage';
+import {Actions, Scene, Router} from 'react-native-router-flux';
+
+const scenes = Actions.create(
+  <Scene key="root" >
+    <Scene key="login" component={LoginView} hideNavBar/>
+    <Scene key="home" component={HomeView}  title="Lista de artistas"/>
+    <Scene key="artistPage" component={ArtistPage} title="Artista"/>
+  </Scene>
+)
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <Router scenes={scenes}/>
+  )
+
+  
+   
+  
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
